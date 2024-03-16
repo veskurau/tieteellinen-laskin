@@ -27,4 +27,5 @@ Harjoitustyön ydin on yllä kuvatun shunting yard algoritmin toteutus. Niin ett
 ## Viitteet
 
 https://en.wikipedia.org/wiki/Shunting_yard_algorithm
+
 https://en.wikipedia.org/wiki/Reverse_Polish_notation
