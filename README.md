@@ -2,7 +2,7 @@
 
 ## Viikkoraportit
 
-[Viikkoraportti 1](https://github.com/veskurau/tieteellinen-laskin/blob/main/dokumentaatio/viikkoraportti1.md)
+[Viikkoraportti 1](https://github.com/veskurau/tieteellinen-laskin/blob/main/dokumentaatio/viikkoraportit/viikkoraportti1.md)
 
 
 ## Dokumentit
