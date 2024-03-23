@@ -8,9 +8,10 @@ class Calculator:
     
     Attributes:
         expression: String, holds the expression in infix notation, given by the user
-        rpn: String, holds the expression in postfix notation or Reverse Polish notation
+        rpn: Deque, holds the expression in postfix notation or Reverse Polish notation
         saved_variables: Dictionary, keeps track of the saved results. 
                          Key is the variable name and value is the result.
+        stack: List, used as a stack where the operators and functions are pushed and popped
 
     """
 
@@ -28,19 +29,19 @@ class Calculator:
 
         Args:
             expression (str): Expression in infix notation.
-            RPN (str): Expression in postfix notation.
+            valitated_expression (deque): Expression in postfix notation.
         """
 
-        validated_expression = self.validate_and_change_to_deque(expression)
-        if not validated_expression:
+        self.validated_expression = self.validate_and_change_to_deque(expression)
+        if not self.validated_expression:
             print("Expression not valid")
             return False
             # TODO: Add functionality that will give an error to the user, that the expression was not valid
 
         
         # Test printing:
-        print("Valitated expression:")
-        print(validated_expression)
+        print("Validated expression:")
+        print(self.validated_expression)
 
 
         # self.infix_to_rpn(validated_expression)
