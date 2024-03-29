@@ -78,8 +78,10 @@ class Calculator:
         expression_deque = deque()
 
         expression_string = expression.replace(" ", "")
-        
-        for i in range(0, len(expression_string)):
+        i = 0
+        while i < len(expression_string):
+        #for i in range(0, len(expression_string)):
+            print(f"i alussa: {i}")
             # Situation where token is a number
             if expression_string[i] in string.digits:
                 numbers = expression_string[i]
@@ -127,14 +129,15 @@ class Calculator:
             else:
                 print(f"{expression_string[i]} is not a valid character")
                 return False
-                
+            i += 1
+            print(f"i lopussa: {i}")
             
 
         # test printing
         print("Expression string:")
         print(expression_string)
 
-        return expression_string
+        return expression_deque
 
 
 
