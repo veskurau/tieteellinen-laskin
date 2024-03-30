@@ -1,48 +1,51 @@
 import unittest
-from calculator import Calculator
 from collections import deque
+from algorithms.validator import Validator
 
 # FROM COMMAND LINE: coverage run --branch -m pytest src; coverage html
 
-class TestCalculator(unittest.TestCase):
-    """Tests for Calculator class, which is responsible for the application logic.
+class TestValidator(unittest.TestCase):
+    """Tests for Validator class, which is responsible for the initial validation
+        of the expression in infix notation.
 
     Attributes:
-        calculator: Calculator, gives access to to class Calculator
+        validator: Validator, gives access to class Validator
         expression_deque: Deque, holds the expressions tokens in infix notation
         
     """
 
     def setUp(self):
-        self.calculator = Calculator()
+        self.validator = Validator()
         self.expression_deque = deque()
 
     def test_expression_with_single_digit_is_correct(self):
         expression = "5"
         self.expression_deque.append(expression)
-        returned = self.calculator.validate_and_change_to_deque(expression)
-        self.assertEqual(returned, self.expression_deque)
+        self.validator.validate(expression)
+        self.assertEqual(self.validator.get_expression_deque(), self.expression_deque)
 
     def test_token_with_multiple_numbers_is_read_correctly(self):
         expression = "19500"
         self.expression_deque.append(expression)
-        returned = self.calculator.validate_and_change_to_deque(expression)
-        self.assertEqual(returned, self.expression_deque)
+        self.validator.validate(expression)
+        self.assertEqual(self.validator.get_expression_deque(), self.expression_deque)
 
     def test_token_with_decimal_point_is_read_correctly(self):
         expression = "15.025"
         self.expression_deque.append(expression)
-        returned = self.calculator.validate_and_change_to_deque(expression)
-        self.assertEqual(returned, self.expression_deque)
+        self.validator.validate(expression)
+        self.assertEqual(self.validator.get_expression_deque(), self.expression_deque)
+
+
 
     def test_token_with_more_than_one_decimal_point_is_rejected(self):
         expression = "15.025.85"
-        returned = self.calculator.validate_and_change_to_deque(expression)
+        returned = self.validator.validate(expression)
         self.assertEqual(returned, False)
 
     def test_token_which_ends_with_decimal_point_is_rejected(self):
         expression = "15.025."
-        returned = self.calculator.validate_and_change_to_deque(expression)
+        returned = self.validator.validate(expression)
         self.assertEqual(returned, False)
 
     def test_token_with_decimal_point_must_have_numbers_after_it(self):
@@ -50,13 +53,13 @@ class TestCalculator(unittest.TestCase):
         expression2 = "15.B"
         expression3 = "15.+"
         expression4 = "15.&&&"
-        returned = self.calculator.validate_and_change_to_deque(expression1)
+        returned =         returned = self.validator.validate(expression1)
         self.assertEqual(returned, False)
-        returned = self.calculator.validate_and_change_to_deque(expression2)
+        returned =         returned = self.validator.validate(expression2)
         self.assertEqual(returned, False)
-        returned = self.calculator.validate_and_change_to_deque(expression3)
+        returned =         returned = self.validator.validate(expression3)
         self.assertEqual(returned, False)
-        returned = self.calculator.validate_and_change_to_deque(expression4)
+        returned =         returned = self.validator.validate(expression4)
         self.assertEqual(returned, False)
 
     def test_token_with_operation_is_read_correctly(self):
@@ -64,7 +67,8 @@ class TestCalculator(unittest.TestCase):
         for operation in valid_operations:
             self.expression_deque = deque()
             self.expression_deque.append(operation)
-            returned = self.calculator.validate_and_change_to_deque(operation)
+            self.validator.validate(operation)
+            returned = self.validator.get_expression_deque()
             self.assertEqual(returned, self.expression_deque)
 
 

@@ -1,5 +1,6 @@
 import string
 from collections import deque
+from algorithms.validator import Validator
 
 # pylint: disable=all
 
@@ -8,6 +9,7 @@ class Calculator:
     
     Attributes:
         expression: String, holds the expression in infix notation, given by the user
+        validator: Validator-class, does the initial validation to the expression
         rpn: Deque, holds the expression in postfix notation or Reverse Polish notation
         saved_variables: Dictionary, keeps track of the saved results. 
                          Key is the variable name and value is the result.
@@ -18,6 +20,7 @@ class Calculator:
     def __init__(self):
         """Class constructor, which creates a new calculator."""
 
+        self.validator = Validator()
         self.rpn = deque()
         self.result = ""
         self.saved_variables = {}
@@ -32,7 +35,12 @@ class Calculator:
             valitated_expression (deque): Expression in postfix notation.
         """
 
-        self.validated_expression = self.validate_and_change_to_deque(expression)
+        if self.validator.validate(expression):
+            self.validated_expression = self.validator.get_expression_deque()
+
+
+        # self.validated_expression = self.validator.validate(expression)
+        #self.validated_expression = self.validate_and_change_to_deque(expression)
         if not self.validated_expression:
             print("Expression not valid")
             return False
