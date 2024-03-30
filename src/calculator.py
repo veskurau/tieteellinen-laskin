@@ -72,7 +72,7 @@ class Calculator:
         """
 
 
-        valid_non_numbers = "+-*/^(),"
+        valid_operations = "+-*/^(),"
         valid_functions = ["min", "max", "sqrt", "sin"]
 
         expression_deque = deque()
@@ -80,6 +80,7 @@ class Calculator:
         expression_string = expression.replace(" ", "")
         i = 0
         while i < len(expression_string):
+
             # Situation where token is a number
             if expression_string[i] in string.digits:
                 numbers = expression_string[i]
@@ -111,12 +112,12 @@ class Calculator:
                         expression_deque.append(numbers)
                         break
             
-            # Situation where token is a non number
-            elif expression_string[i] in valid_non_numbers:
+            # Situation where token is an operation
+            elif expression_string[i] in valid_operations:
                 expression_deque.append(expression_string[i])
 
-            # Situation where a lowercase a-z is given, this might mean a function
-            elif expression_string[i] in string.ascii_lowercase:
+            # Situation where a lowercase a-z is given, this might mean it is a function
+            elif expression_string[i] in string.ascii_lowercase and i != len(expression_string)-1:
                 pass
                 # TODO: Check if a function is writen and add to deque
                 # If function misspelled, give error
@@ -128,7 +129,7 @@ class Calculator:
 
             # Give error if an invalid character is given
             else:
-                print(f"{expression_string[i]} is not a valid character")
+                print(f"Error with character: {expression_string[i]}")
                 return False
             i += 1
            

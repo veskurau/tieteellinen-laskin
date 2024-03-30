@@ -59,6 +59,13 @@ class TestCalculator(unittest.TestCase):
         returned = self.calculator.validate_and_change_to_deque(expression4)
         self.assertEqual(returned, False)
 
+    def test_token_with_operation_is_read_correctly(self):
+        valid_operations = "+-*/^(),"
+        for operation in valid_operations:
+            self.expression_deque = deque()
+            self.expression_deque.append(operation)
+            returned = self.calculator.validate_and_change_to_deque(operation)
+            self.assertEqual(returned, self.expression_deque)
 
 
 
