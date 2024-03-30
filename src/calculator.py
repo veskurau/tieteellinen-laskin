@@ -80,8 +80,6 @@ class Calculator:
         expression_string = expression.replace(" ", "")
         i = 0
         while i < len(expression_string):
-        #for i in range(0, len(expression_string)):
-            print(f"i alussa: {i}")
             # Situation where token is a number
             if expression_string[i] in string.digits:
                 numbers = expression_string[i]
@@ -96,8 +94,11 @@ class Calculator:
                         i += 1
                     # If it is a dot. Also checks that it is not the last character, it is followed by a digit,
                     # and there is only one . in the token
-                    elif expression_string[i+1] == "." and "." not in numbers:
-                        if i+1 == len(expression_string):
+                    elif expression_string[i+1] == ".":
+                        if "." in numbers:
+                            print("Error: Only one . can be in a decimal number!")
+                            return False
+                        if i+1 == len(expression_string)-1:
                             print("Error: . cannot be the last character!")
                             return False
                         if expression_string[i+2] not in string.digits:
@@ -130,8 +131,7 @@ class Calculator:
                 print(f"{expression_string[i]} is not a valid character")
                 return False
             i += 1
-            print(f"i lopussa: {i}")
-            
+           
 
         # test printing
         print("Expression string:")
