@@ -37,6 +37,8 @@ class Calculator:
 
         if self.validator.validate(expression):
             self.validated_expression = self.validator.get_expression_deque()
+        else:
+            self.validated_expression = False
 
 
         # self.validated_expression = self.validator.validate(expression)

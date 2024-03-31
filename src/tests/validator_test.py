@@ -71,5 +71,20 @@ class TestValidator(unittest.TestCase):
             returned = self.validator.get_expression_deque()
             self.assertEqual(returned, self.expression_deque)
 
+    def test_token_with_correct_function_is_read_correctly(self):
+        expression = "min(15)"
+        self.expression_deque = deque()
+        for token in ["min", "(", "15", ")"]:
+            self.expression_deque.append(token)
+
+        self.validator.validate(expression)
+        returned = self.validator.get_expression_deque()
+        self.assertEqual(returned, self.expression_deque)
+
+    def test_token_with_mispelled_function_is_rejected(self):
+        expression = "minn(15)"
+        returned = self.validator.validate(expression)
+        self.assertEqual(returned, False)
+
 
 

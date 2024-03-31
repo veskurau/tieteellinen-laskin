@@ -51,12 +51,12 @@ class Validator:
 
             # Situation where a lowercase a-z is given, this might mean it is a function
             elif self.expression_string[self.i] in string.ascii_lowercase and self.i != len(self.expression_string)-1:
-                if not _function_valid_and_processed():
+                if not self._function_valid_and_processed():
                     return False
 
             # Situation where a uppercase A-Z is given, might be a saved variable, check the dict
             elif self.expression_string[self.i] in string.ascii_uppercase:
-                if not _variable_valid_and_processed():
+                if not self._variable_valid_and_processed():
                     return False
 
             # Give error if an invalid character is given
@@ -111,9 +111,33 @@ class Validator:
                 return True
 
     def _function_valid_and_processed(self):
-        pass
-        # TODO: Check if a function is writen and add to deque
-        # If function misspelled, give error
+        """Checks if a function is valid and if it is, then adds it as a token to the deque
+        
+        Returns:
+            True: Function is valid and has been added to deque
+            False: If Function is not valid
+        """
+
+        letters = self.expression_string[self.i]
+
+        # Add all lowercase letters to a string
+        while True:
+            if self.i == len(self.expression_string)-1:
+                return False
+            if self.expression_string[self.i+1] in string.ascii_lowercase:
+                letters += self.expression_string[self.i+1]
+                self.i += 1
+            else: 
+                break
+
+        # Check that the letters form a valid function and then add it to deque
+        if letters in self.valid_functions:
+            self.expression_deque.append(letters)
+            return True
+        else: 
+            return False
+
+        # TODO: More checks will probably be needed, e.g.: after valid func must come left parenthesis, and after that digits and comma etc. 
     
     def _variable_valid_and_processed(self):
         pass
