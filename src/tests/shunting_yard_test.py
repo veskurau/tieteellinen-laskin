@@ -4,7 +4,7 @@ from algorithms.shunting_yard import ShuntingYard
 
 # FROM COMMAND LINE: coverage run --branch -m pytest src; coverage html
 
-class TestValidator(unittest.TestCase):
+class TestShuntingYard(unittest.TestCase):
     """Tests for ShuntingYard class, which is responsible for transforming the infix expression to
         a postfix expression.
 
