@@ -35,7 +35,7 @@ class Calculator:
             valitated_expression (deque): Expression in postfix notation.
         """
 
-        if self.validator.validate(expression):
+        if self.validator.validate(expression, self.saved_variables):
             self.validated_expression = self.validator.get_expression_deque()
         else:
             self.validated_expression = False

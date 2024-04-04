@@ -21,12 +21,13 @@ class Validator:
         self.valid_operations = "+-*/^(),"
         self.valid_functions = ["min", "max", "sqrt", "sin"]
 
-    def validate(self, expression):
+    def validate(self, expression, saved_variables):
         """Performs an initial validation of the infix expression, before it is
             entered to the shunting yard algorithm.
         
         Args:
             expression (str): Expression in infix notation.
+            saved_variables (dict): Saved results of previous expressions
 
         Returns:
             Deque: Expression in infix notation with the tokens parsed or
@@ -34,6 +35,7 @@ class Validator:
         """
 
         self.expression_deque = deque()
+        self.saved_variables = saved_variables
 
         self.expression_string = expression.replace(" ", "")
         self.i = 0
@@ -137,10 +139,17 @@ class Validator:
         else: 
             return False
 
-        # TODO: More checks will probably be needed, e.g.: after valid func must come left parenthesis, and after that digits and comma etc. 
+        # TODO: More checks will probably be needed, 
+        # e.g.: after valid func must come left parenthesis, and after that digits and comma etc. 
+        # BUT shunring yard might check these above!
     
     def _variable_valid_and_processed(self):
-        pass
-        # TODO: Check the dictionary
+        if self.expression_string[self.i] in self.saved_variables:
+            variable_result = self.saved_variables[self.expression_string[self.i]]
+            self.expression_deque.append(variable_result)
+            return True
+        else:
+            print(f"Error: Variable {self.expression_string[self.i]} not found")
+            return False
 
     
