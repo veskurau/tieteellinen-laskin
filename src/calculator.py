@@ -4,9 +4,10 @@ from algorithms.validator import Validator
 
 # pylint: disable=all
 
+
 class Calculator:
     """Class, responsible for the application logic.
-    
+
     Attributes:
         expression: String, holds the expression in infix notation, given by the user
         validator: Validator-class, does the initial validation to the expression
@@ -26,7 +27,6 @@ class Calculator:
         self.saved_variables = {}
         self.stack = []
 
-
     def start(self, expression):
         """Starts the calculator. 
 
@@ -40,25 +40,21 @@ class Calculator:
         else:
             self.validated_expression = False
 
-
         # self.validated_expression = self.validator.validate(expression)
-        #self.validated_expression = self.validate_and_change_to_deque(expression)
+        # self.validated_expression = self.validate_and_change_to_deque(expression)
         if not self.validated_expression:
             print("Expression not valid")
             return False
             # TODO: Add functionality that will give an error to the user, that the expression was not valid
 
-        
         # Test printing:
         print("Validated expression:")
         print(self.validated_expression)
-
 
         # self.infix_to_rpn(validated_expression)
         # self.rpn_to_result(self.rpn)
 
         # return self.result
-
 
     def get_saved_variables(self):
         """Gets all the saved variables from the
@@ -72,7 +68,7 @@ class Calculator:
     def validate_and_change_to_deque(self, expression):
         """Performs an initial validation of the infix expression, before it is
             entered to the shunting yard algorithm.
-        
+
         Args:
             expression (str): Expression in infix notation.
 
@@ -80,7 +76,6 @@ class Calculator:
             Deque: Expression in infix notation or
             False: If expression not valid
         """
-
 
         valid_operations = "+-*/^(),"
         valid_functions = ["min", "max", "sqrt", "sin"]
@@ -94,9 +89,9 @@ class Calculator:
             # Situation where token is a number
             if expression_string[i] in string.digits:
                 numbers = expression_string[i]
-                # Loop to check that if there are more digits or a decimal separator dot 
-                while True: 
-                    if i == len(expression_string)-1: # Check that not the last character
+                # Loop to check that if there are more digits or a decimal separator dot
+                while True:
+                    if i == len(expression_string)-1:  # Check that not the last character
                         expression_deque.append(numbers)
                         break
                     # Case if next character is a digit
@@ -121,7 +116,7 @@ class Calculator:
                     else:
                         expression_deque.append(numbers)
                         break
-            
+
             # Situation where token is an operation
             elif expression_string[i] in valid_operations:
                 expression_deque.append(expression_string[i])
@@ -142,15 +137,12 @@ class Calculator:
                 print(f"Error with character: {expression_string[i]}")
                 return False
             i += 1
-           
 
         # test printing
         print("Expression string:")
         print(expression_string)
 
         return expression_deque
-
-
 
     def infix_to_rpn(self, expression):
         """Uses the shunting yard algorithm to transform an infix expression to
@@ -174,6 +166,5 @@ class Calculator:
         Returns:
             String: Result of the expression
         """
-        pass 
+        pass
         # TODO: Create the function
-

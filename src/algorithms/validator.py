@@ -3,6 +3,7 @@ from collections import deque
 
 # pylint: disable=all
 
+
 class Validator:
     """Class, responsible for doing the initial check to a string-type infix expression,
         so that there are no invalid characters in the expression. The validator will parse
@@ -24,7 +25,7 @@ class Validator:
     def validate(self, expression, saved_variables):
         """Performs an initial validation of the infix expression, before it is
             entered to the shunting yard algorithm.
-        
+
         Args:
             expression (str): Expression in infix notation.
             saved_variables (dict): Saved results of previous expressions
@@ -46,7 +47,7 @@ class Validator:
             if self.expression_string[self.i] in string.digits:
                 if not self._number_valid_and_processed():
                     return False
-            
+
             # Situation where token is an operation
             elif self.expression_string[self.i] in self.valid_operations:
                 self.expression_deque.append(self.expression_string[self.i])
@@ -63,30 +64,29 @@ class Validator:
 
             # Give error if an invalid character is given
             else:
-                print(f"Error with character: {self.expression_string[self.i]}")
+                print(
+                    f"Error with character: {self.expression_string[self.i]}")
                 return False
             self.i += 1
-           
+
         return True
-
-
 
     def get_expression_deque(self):
         return self.expression_deque
-    
 
     def _number_valid_and_processed(self):
         """Checks if a number is valid and if it is, then adds it as a token to the deque
-        
+
         Returns:
             True: Number is valid and has been added to deque
             False: If number is not valid
         """
 
         numbers = self.expression_string[self.i]
-                # Loop to check that if there are more digits or a decimal separator dot 
-        while True: 
-            if self.i == len(self.expression_string)-1: # Check that not the last character
+        # Loop to check that if there are more digits or a decimal separator dot
+        while True:
+            # Check that not the last character
+            if self.i == len(self.expression_string)-1:
                 self.expression_deque.append(numbers)
                 return True
             # Case if next character is a digit
@@ -114,7 +114,7 @@ class Validator:
 
     def _function_valid_and_processed(self):
         """Checks if a function is valid and if it is, then adds it as a token to the deque
-        
+
         Returns:
             True: Function is valid and has been added to deque
             False: If Function is not valid
@@ -129,27 +129,26 @@ class Validator:
             if self.expression_string[self.i+1] in string.ascii_lowercase:
                 letters += self.expression_string[self.i+1]
                 self.i += 1
-            else: 
+            else:
                 break
 
         # Check that the letters form a valid function and then add it to deque
         if letters in self.valid_functions:
             self.expression_deque.append(letters)
             return True
-        else: 
+        else:
             return False
 
-        # TODO: More checks will probably be needed, 
-        # e.g.: after valid func must come left parenthesis, and after that digits and comma etc. 
+        # TODO: More checks will probably be needed,
+        # e.g.: after valid func must come left parenthesis, and after that digits and comma etc.
         # BUT shunring yard might check these above!
-    
+
     def _variable_valid_and_processed(self):
         if self.expression_string[self.i] in self.saved_variables:
             variable_result = self.saved_variables[self.expression_string[self.i]]
             self.expression_deque.append(variable_result)
             return True
         else:
-            print(f"Error: Variable {self.expression_string[self.i]} not found")
+            print(
+                f"Error: Variable {self.expression_string[self.i]} not found")
             return False
-
-    

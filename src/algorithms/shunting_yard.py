@@ -1,6 +1,7 @@
 import string
 from collections import deque
 
+
 class ShuntingYard:
     """Class, uses the shunting yard algorithm to transform an infix expression to a 
         postfix expression which is also known as the Reverse Polish Notation (RPN).
@@ -33,7 +34,7 @@ class ShuntingYard:
 
         self.input_queue = input_queue
 
-        #while len(self.input_queue) > 0:
+        # while len(self.input_queue) > 0:
         # Let's go over all the tokens in the input
         for token in self.input_queue:
 
@@ -50,8 +51,6 @@ class ShuntingYard:
             elif token[0] in "+-*/^":
                 pass
                 # TODO: comparison of operators in the stack etc.
-
-
 
     def get_output_queue(self):
         return self.output_queue

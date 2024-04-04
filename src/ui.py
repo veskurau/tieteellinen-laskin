@@ -1,18 +1,19 @@
 from calculator import Calculator
 
+
 class UI:
     """Class, the interface which interacts with the user.
-    
+
     Attributes:
         calculator: Calculator-object
     """
-    
+
     def __init__(self):
         """Class constructor, which creates a new interface."""
 
         self._calculator = Calculator()
 
-    def start(self): 
+    def start(self):
         """Starts up the interface for the user."""
 
         print("Welcome to the Scientific Calculator!")
@@ -40,7 +41,6 @@ class UI:
             else:
                 print("Incorrect input, please try again!")
 
-
     def _show_instructions(self):
         print("The instructions.....")
         # TODO: add instructions
@@ -51,5 +51,3 @@ class UI:
 
     def _get_saved_variables(self):
         print(self._calculator.get_saved_variables())
-
-

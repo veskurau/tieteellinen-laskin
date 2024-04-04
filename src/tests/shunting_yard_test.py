@@ -4,6 +4,7 @@ from algorithms.shunting_yard import ShuntingYard
 
 # FROM COMMAND LINE: coverage run --branch -m pytest src; coverage html
 
+
 class TestShuntingYard(unittest.TestCase):
     """Tests for ShuntingYard class, which is responsible for transforming the infix expression to
         a postfix expression.
@@ -14,7 +15,7 @@ class TestShuntingYard(unittest.TestCase):
         output_queue: Deque, holds the epxressions tokens in postfix notation
         operator_stack: List, used as a stack where the operators and functions 
                         are pushed and popped
-        
+
     """
 
     def setUp(self):
@@ -38,4 +39,3 @@ class TestShuntingYard(unittest.TestCase):
         self.shunting_yard.start(self.input_queue)
         returned = self.shunting_yard.get_operator_stack()
         self.assertEqual(returned, self.operator_stack)
-
