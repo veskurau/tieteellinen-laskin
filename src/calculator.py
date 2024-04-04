@@ -28,7 +28,7 @@ class Calculator:
 
 
     def start(self, expression):
-        """Class constructor, which creates a new calculator. 
+        """Starts the calculator. 
 
         Args:
             expression (str): Expression in infix notation.
