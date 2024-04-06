@@ -11,6 +11,7 @@ class ShuntingYard:
         output_queue: Deque, holds the tokens of an expression in postfix notation
         operator_stack: List, used as a stack where the operators and functions 
                         are pushed and popped
+        operator_precedence: Dictionary, holds the precedence-value for each operation
 
     """
 
@@ -20,6 +21,7 @@ class ShuntingYard:
         self.input_queue = deque()
         self.output_queue = deque()
         self.operator_stack = []
+        self.operator_precedence = {"^": 4, "*": 3, "/": 3, "+": 2, "-": 2}
 
     def start(self, input_queue):
         """Starts the shunting yard algorithm and checks the input expression in infix notation
@@ -47,13 +49,35 @@ class ShuntingYard:
             elif token[0] in string.ascii_lowercase:
                 self.operator_stack.append(token)
 
-            # Check if token is a operator, add it to operator stack
+            # Check if token is a operator, add it to operator stack accordingly
             elif token[0] in "+-*/^":
-                pass
-                # TODO: comparison of operators in the stack etc.
+                while True:
+                    top_operator = self.get_top_operator_from_stack()
+                    if not top_operator:
+                        break
+                    if top_operator != "(":
+                        if (self.operator_precedence[top_operator] > self.operator_precedence[token[0]] 
+                        or (self.operator_precedence[top_operator] == self.operator_precedence[token[0]] and token[0] != "^")):
+                            self.output_queue.append(self.operator_stack.pop())
+                        else:
+                            break
+                    else:
+                        break
+                        
+                self.operator_stack.append(token[0])
+
+
+
 
     def get_output_queue(self):
         return self.output_queue
 
     def get_operator_stack(self):
         return self.operator_stack
+
+    def get_top_operator_from_stack(self):
+        tokens_in_stack = len(self.operator_stack)
+        if tokens_in_stack == 0:
+            return None
+        else:
+            return self.operator_stack[tokens_in_stack-1]
