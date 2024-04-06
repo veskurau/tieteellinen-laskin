@@ -130,3 +130,21 @@ class TestShuntingYard(unittest.TestCase):
         returned2 = self.shunting_yard.get_output_queue()
         self.assertEqual(returned1, self.operator_stack)
         self.assertEqual(returned2, self.output_queue)
+
+    def test_if_input_operator_is_comma_all_operators_popped_from_stack_until_left_parantheses(self):        
+        self.input_queue.append(",")
+        self.operator_stack.append("sin")
+        self.operator_stack.append("(")
+        self.operator_stack.append("max")
+        self.output_queue.append(self.operator_stack.pop())
+
+        self.shunting_yard.operator_stack.append("sin")
+        self.shunting_yard.operator_stack.append("(")
+        self.shunting_yard.operator_stack.append("max")
+
+
+        self.shunting_yard.start(self.input_queue)
+        returned1 = self.shunting_yard.get_operator_stack()
+        returned2 = self.shunting_yard.get_output_queue()
+        self.assertEqual(returned1, self.operator_stack)
+        self.assertEqual(returned2, self.output_queue)

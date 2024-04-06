@@ -66,6 +66,14 @@ class ShuntingYard:
                         
                 self.operator_stack.append(token[0])
 
+            elif token[0] == ",":
+                while True:
+                    top_operator = self.get_top_operator_from_stack()
+                    if top_operator == "(":
+                        break
+                    self.output_queue.append(self.operator_stack.pop())
+
+
 
 
 
