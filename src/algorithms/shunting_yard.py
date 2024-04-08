@@ -49,7 +49,7 @@ class ShuntingYard:
             elif token[0] in string.ascii_lowercase:
                 self.operator_stack.append(token)
 
-            # Check if token is a operator, add it to operator stack accordingly
+            # Check if token is an operator, add it to operator stack accordingly
             elif token[0] in "+-*/^":
                 while True:
                     top_operator = self.get_top_operator_from_stack()
@@ -75,6 +75,37 @@ class ShuntingYard:
 
             elif token[0] == "(":
                 self.operator_stack.append(token[0])
+            
+            elif token[0] == ")":
+                top_operator = self.get_top_operator_from_stack()
+                while top_operator != "(":
+                    # If operator stack is empty, there was no left paranthesis in the stack to pair up with this right one
+                    if not top_operator:
+                        print("Error: Mismatched parenthesis")
+                        return False
+                    # Add operators from operarot stack to ouput queue until ( is on top
+                    self.output_queue.append(self.operator_stack.pop())
+                    top_operator = self.get_top_operator_from_stack()
+                # Now we have ( on top of the stack, let's discard it
+                top_operator = self.operator_stack.pop()
+
+                # If top operator in stack is a function, pop it to output queue
+                if top_operator[0] in string.ascii_lowercase:
+                    self.output_queue.append(self.operator_stack.pop())
+
+        # Pop the remaining operators from the stack to the output queue
+        while True:
+            top_operator = self.get_top_operator_from_stack()
+            # When stack is empty, the job is done
+            if not top_operator:
+                break
+            # There shouldn't be any parenthesesis in the stack
+            if top_operator in "()":
+                print("Error: Mismatched parenthesis")
+                return False
+            
+            self.output_queue.append(self.operator_stack.pop())
+            
 
 
 

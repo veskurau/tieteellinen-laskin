@@ -32,21 +32,25 @@ class TestShuntingYard(unittest.TestCase):
         returned = self.shunting_yard.get_output_queue()
         self.assertEqual(returned, self.output_queue)
 
-    def test_function_is_added_to_operator_stack(self):
+    def test_function_is_added_to_operator_stack_and_popped_to_output(self):
         self.input_queue.append("max")
-        self.operator_stack.append("max")
+        self.output_queue.append("max")
 
         self.shunting_yard.start(self.input_queue)
-        returned = self.shunting_yard.get_operator_stack()
-        self.assertEqual(returned, self.operator_stack)
+        returned1 = self.shunting_yard.get_operator_stack()
+        returned2 = self.shunting_yard.get_output_queue()
+        self.assertEqual(returned1, self.operator_stack)
+        self.assertEqual(returned2, self.output_queue)
 
     def test_operator_is_pushed_to_empty_operator_stack(self):
         self.input_queue.append("+")
-        self.operator_stack.append("+")
+        self.output_queue.append("+")
 
         self.shunting_yard.start(self.input_queue)
-        returned = self.shunting_yard.get_operator_stack()
-        self.assertEqual(returned, self.operator_stack)
+        returned1 = self.shunting_yard.get_operator_stack()
+        returned2 = self.shunting_yard.get_output_queue()
+        self.assertEqual(returned1, self.operator_stack)
+        self.assertEqual(returned2, self.output_queue)
 
     def test_operator_stack_top_operator_has_lower_precedence(self):
         """The operator with the higher precedence will be pushed
@@ -54,14 +58,16 @@ class TestShuntingYard(unittest.TestCase):
         """
 
         self.input_queue.append("*")
-        self.operator_stack.append("+")
-        self.operator_stack.append("*")
+        self.output_queue.append("*")
+        self.output_queue.append("+")
         self.shunting_yard.operator_stack.append("+")
 
 
         self.shunting_yard.start(self.input_queue)
-        returned = self.shunting_yard.get_operator_stack()
-        self.assertEqual(returned, self.operator_stack)
+        returned1 = self.shunting_yard.get_operator_stack()
+        returned2 = self.shunting_yard.get_output_queue()
+        self.assertEqual(returned1, self.operator_stack)
+        self.assertEqual(returned2, self.output_queue)
 
     def test_operator_stack_top_operator_has_higher_precedence(self):
         """The top operator with higher precedence will be popped off the 
@@ -70,8 +76,8 @@ class TestShuntingYard(unittest.TestCase):
         """
 
         self.input_queue.append("+")
-        self.operator_stack.append("+")
         self.output_queue.append("^")
+        self.output_queue.append("+")
         self.shunting_yard.operator_stack.append("^")
 
 
@@ -88,8 +94,8 @@ class TestShuntingYard(unittest.TestCase):
         """
         
         self.input_queue.append("*")
-        self.operator_stack.append("*")
         self.output_queue.append("/")
+        self.output_queue.append("*")
         self.shunting_yard.operator_stack.append("/")
 
 
@@ -105,8 +111,8 @@ class TestShuntingYard(unittest.TestCase):
         """
         
         self.input_queue.append("^")
-        self.operator_stack.append("^")
-        self.operator_stack.append("^")
+        self.output_queue.append("^")
+        self.output_queue.append("^")
         self.shunting_yard.operator_stack.append("^")
 
 
@@ -121,7 +127,7 @@ class TestShuntingYard(unittest.TestCase):
         
         self.input_queue.append("+")
         self.operator_stack.append("(")
-        self.operator_stack.append("+")
+        self.output_queue.append("+")
         self.shunting_yard.operator_stack.append("(")
 
 
@@ -156,3 +162,31 @@ class TestShuntingYard(unittest.TestCase):
         self.shunting_yard.start(self.input_queue)
         returned = self.shunting_yard.get_operator_stack()
         self.assertEqual(returned, self.operator_stack)
+
+    def test_right_paranthesis_is_processed_correctly_when_left_paranthesis_is_found(self):
+        self.input_queue.append(")")
+        self.output_queue.append("+")
+
+        self.shunting_yard.operator_stack.append("+")
+        self.shunting_yard.operator_stack.append("(")
+
+        self.shunting_yard.start(self.input_queue)
+        returned1 = self.shunting_yard.get_operator_stack()
+        returned2 = self.shunting_yard.get_output_queue()
+        self.assertEqual(returned1, self.operator_stack)
+        self.assertEqual(returned2, self.output_queue)
+
+    def test_right_paranthesis_is_processed_correctly_when_stack_empty(self):
+        self.input_queue.append(")")
+
+        returned = self.shunting_yard.start(self.input_queue)
+        self.assertEqual(returned, False)
+
+    def test_if_there_are_left_over_paranthesis_in_stack(self):
+        self.input_queue.append(")")
+
+        self.shunting_yard.operator_stack.append("(")
+        self.shunting_yard.operator_stack.append("(")
+
+        returned = self.shunting_yard.start(self.input_queue)
+        self.assertEqual(returned, False)
