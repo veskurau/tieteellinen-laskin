@@ -148,3 +148,11 @@ class TestShuntingYard(unittest.TestCase):
         returned2 = self.shunting_yard.get_output_queue()
         self.assertEqual(returned1, self.operator_stack)
         self.assertEqual(returned2, self.output_queue)
+
+    def test_left_paranthesis_is_pushed_to_stack(self):
+        self.input_queue.append("(")
+        self.operator_stack.append("(")
+
+        self.shunting_yard.start(self.input_queue)
+        returned = self.shunting_yard.get_operator_stack()
+        self.assertEqual(returned, self.operator_stack)

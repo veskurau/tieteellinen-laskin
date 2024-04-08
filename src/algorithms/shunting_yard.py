@@ -73,7 +73,8 @@ class ShuntingYard:
                         break
                     self.output_queue.append(self.operator_stack.pop())
 
-
+            elif token[0] == "(":
+                self.operator_stack.append(token[0])
 
 
 
