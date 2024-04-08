@@ -33,6 +33,8 @@ class ShuntingYard:
         Returns:
 
         """
+        self.output_queue = deque()
+        self.operator_stack = []
 
         self.input_queue = input_queue
 
@@ -83,13 +85,14 @@ class ShuntingYard:
                     if not top_operator:
                         print("Error: Mismatched parenthesis")
                         return False
-                    # Add operators from operarot stack to ouput queue until ( is on top
+                    # Add operators from operator stack to ouput queue until ( is on top
                     self.output_queue.append(self.operator_stack.pop())
                     top_operator = self.get_top_operator_from_stack()
                 # Now we have ( on top of the stack, let's discard it
-                top_operator = self.operator_stack.pop()
+                self.operator_stack.pop()
 
                 # If top operator in stack is a function, pop it to output queue
+                top_operator = self.get_top_operator_from_stack()
                 if top_operator[0] in string.ascii_lowercase:
                     self.output_queue.append(self.operator_stack.pop())
 
@@ -106,7 +109,13 @@ class ShuntingYard:
             
             self.output_queue.append(self.operator_stack.pop())
             
-
+        # TODO poista tulostukset kun et enää tarvitse
+        print()
+        print("Shunting yardin jälkeen:")
+        print(f"Input infix muodossa: {self.input_queue}")
+        print(f"Output postfix muodossa: {self.output_queue}")
+        print()
+        return True
 
 
     def get_output_queue(self):

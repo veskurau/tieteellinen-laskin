@@ -1,6 +1,7 @@
 import string
 from collections import deque
 from algorithms.validator import Validator
+from algorithms.shunting_yard import ShuntingYard
 
 # pylint: disable=all
 
@@ -22,6 +23,7 @@ class Calculator:
         """Class constructor, which creates a new calculator."""
 
         self.validator = Validator()
+        self.shunting_yard = ShuntingYard()
         self.rpn = deque()
         self.result = ""
         self.saved_variables = {}
@@ -50,6 +52,12 @@ class Calculator:
         # Test printing:
         print("Validated expression:")
         print(self.validated_expression)
+
+        self.rpn = self.shunting_yard.start(self.validated_expression)
+        if not self.rpn:
+            print("Error: Expression not valid")
+            return False
+
 
         # self.infix_to_rpn(validated_expression)
         # self.rpn_to_result(self.rpn)
