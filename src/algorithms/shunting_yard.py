@@ -116,7 +116,7 @@ class ShuntingYard:
         print(f"Input infix muodossa: {self.input_queue}")
         print(f"Output postfix muodossa: {self.output_queue}")
         print()
-        return True
+        return self.output_queue
 
 
     def get_output_queue(self):

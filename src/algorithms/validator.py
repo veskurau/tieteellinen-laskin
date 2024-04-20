@@ -20,9 +20,9 @@ class Validator:
         """Class constructor, which creates a new calculator."""
 
         self.valid_operations = "+-*/^(),"
-        self.valid_functions = ["min", "max", "sqrt", "sin"]
+        self.valid_functions = []
 
-    def validate(self, expression, saved_variables):
+    def validate(self, expression, saved_variables, valid_functions):
         """Performs an initial validation of the infix expression, before it is
             entered to the shunting yard algorithm.
 
@@ -34,7 +34,7 @@ class Validator:
             Deque: Expression in infix notation with the tokens parsed or
             False: If expression not valid
         """
-
+        self.valid_functions = valid_functions
         self.expression_deque = deque()
         self.saved_variables = saved_variables
 
