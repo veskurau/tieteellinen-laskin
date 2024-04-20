@@ -93,8 +93,9 @@ class ShuntingYard:
 
                 # If top operator in stack is a function, pop it to output queue
                 top_operator = self.get_top_operator_from_stack()
-                if top_operator[0] in string.ascii_lowercase:
-                    self.output_queue.append(self.operator_stack.pop())
+                if top_operator:
+                    if top_operator[0] in string.ascii_lowercase:
+                        self.output_queue.append(self.operator_stack.pop())
 
         # Pop the remaining operators from the stack to the output queue
         while True:
