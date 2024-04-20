@@ -70,6 +70,7 @@ class Calculator:
         self.result = self.result_calculator.calculate(self.rpn, self.single_arg_functions, self.double_arg_functions)
 
         print(f"Tulos on: {self.result}")
+        return self.result
 
 
     def get_saved_variables(self):

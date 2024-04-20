@@ -47,7 +47,8 @@ class UI:
 
     def _enter_expression(self):
         expression = input("Enter expression: ")
-        self._calculator.start(expression)
+        result = self._calculator.start(expression)
+        print(f"The result is: {result}")
 
     def _get_saved_variables(self):
         print(self._calculator.get_saved_variables())

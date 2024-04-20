@@ -42,18 +42,18 @@ class ResultCalculator:
                 self.token_stack.append(token)
             elif token in self.single_arg_functions:
                 first_number = self.token_stack.pop()
-                self.token_stack.append(eval(f"math.{token}({first_number})"))
+                self.token_stack.append(str(eval(f"math.{token}({first_number})")))
             elif token in self.double_arg_functions:
                 first_number = self.token_stack.pop()
                 second_number = self.token_stack.pop()
-                self.token_stack.append(eval(f"math.{token}({second_number, first_number})"))
+                self.token_stack.append(str(eval(f"{token}({second_number, first_number})")))
             elif token == "^":
                 first_number = self.token_stack.pop()
                 second_number = self.token_stack.pop()
-                self.token_stack.append(eval(f"{second_number}**{first_number}"))
+                self.token_stack.append(str(eval(f"{second_number}**{first_number}")))
             else: # All other operations besides power
                 first_number = self.token_stack.pop()
                 second_number = self.token_stack.pop()
-                self.token_stack.append(eval(f"{second_number}{token}{first_number}"))
+                self.token_stack.append(str(eval(f"{second_number}{token}{first_number}")))
 
         return self.token_stack[0]
