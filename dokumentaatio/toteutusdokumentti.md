@@ -12,7 +12,7 @@ Shunting yard algoritmi lukee jokaisen merkin yhden kerran, pinoon menevät merk
 
 ## Työn mahdolliset puutteet ja parannusehdotukset
 
-Ohjelmasta puuttuu vielä tarkistukset joillekin tietyille kielletyille merkinnöille ja operaatioille, kuten esimerkiksi nollalla jakaminen. Lisäksi vastauksia ei pysty vielä tallentamaan muuttujiin.
+Ohjelmasta puuttuu vielä tarkistukset joillekin tietyille kielletyille merkinnöille ja operaatioille, kuten esimerkiksi nollalla jakaminen. Lisäksi käyttäjä ei pysty vielä tallentamaan vastauksia muuttujiin.
 
 ## Laajojen kielimallien käyttö
 
