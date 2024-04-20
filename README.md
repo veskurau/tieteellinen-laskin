@@ -10,6 +10,8 @@
 
 [Viikkoraportti 4](https://github.com/veskurau/tieteellinen-laskin/blob/main/dokumentaatio/viikkoraportit/viikkoraportti4.md)
 
+[Viikkoraportti 5](https://github.com/veskurau/tieteellinen-laskin/blob/main/dokumentaatio/viikkoraportit/viikkoraportti5.md)
+
 
 ## Dokumentit
 
