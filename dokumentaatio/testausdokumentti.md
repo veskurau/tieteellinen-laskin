@@ -4,11 +4,11 @@ Sovellusta testataan automatisoiduin yksikkö- ja integraatiotestein unittestill
 
 ## Testit
 
-Testausta on tehty alustavasti vain Validator- ja ShuntingYard -luokille. Calculator-luokkaa tullaan testaamaan, kun toisia luokkia on saatu kehitetty pidemmälle. 
+Testausta on tehty kattavasti Validator-, ShuntingYard- ja ResultCalculator -luokille, jotka vastaavat oikeastaan kaikista tarkistuksista ja ohjelman ytimestä. Validator ja shunting yardille on tehty omia yksikkötestejä. Mutta projektin loppua kohden on keskitytty tekemään läpiohjelman testejä CalculatorTest -luokan kautta.  
 
 Käyttöliittymä on jätetty automatisoitujen testien ulkopuolelle. 
 
-Tällä hetkellä testattujen luokkien metodeille on pyritty luomaan testit sitä mukaan, kun metodi on saatu valmiiksi. Näin ongelmatapaukset havaitaan varhaisessa vaiheessa. Testeissä pyritään käyttämään monipuolisesti erilaisia syötteitä, sekä hyväksyttäviä että hylättäviä. 
+Testattujen luokkien metodeille on pyritty luomaan testit sitä mukaan, kun metodi on saatu valmiiksi. Näin ongelmatapaukset havaitaan varhaisessa vaiheessa. Testeissä pyritään käyttämään monipuolisesti erilaisia syötteitä, sekä hyväksyttäviä että hylättäviä. 
 
 Esimerkiksi Validator-luokkaa, joka ottaa syötteeksi String-tyyppisen infix muotoisen lausekkeen, on testattu seuraavanlaisesti:
 - Osaa tunnistaa lukuarvot, oli siinä yksi tai useampi numero
@@ -20,7 +20,7 @@ Esimerkiksi Validator-luokkaa, joka ottaa syötteeksi String-tyyppisen infix muo
 
 Shunting yard -luokkaa, joka ottaa syötteeksi deque-tyyppisen infix muotoisen lausekkeen on testattu myös hieman vastaavilla testeillä kuin Validator-luokkaa.
 
-Tällä hetkellä testauksen painopiste on testata Calculator-luokkaa, joka vastaa ohjelman toimintalogiikasta. Luokka käyttää kaikkia muita luokkia, joten testit kattavat periaatteessa koko ketjun alusta loppuun. Testit ovat aloitettu ja seuraavilla viikoilla näitä on tulossa lisää.
+Testauksen painopiste on testata Calculator-luokkaa, joka vastaa ohjelman toimintalogiikasta. Luokka käyttää kaikkia muita luokkia, joten testit kattavat periaatteessa koko ketjun alusta loppuun. Tällä hetkellä testit ovat hyvällä mallilla ja eri algoritmiluokkien testauskattavuus on 90-100% luokkaa. 
 
 ## Testauskattavuus
 

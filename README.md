@@ -12,6 +12,8 @@
 
 [Viikkoraportti 5](https://github.com/veskurau/tieteellinen-laskin/blob/main/dokumentaatio/viikkoraportit/viikkoraportti5.md)
 
+[Viikkoraportti 6](https://github.com/veskurau/tieteellinen-laskin/blob/main/dokumentaatio/viikkoraportit/viikkoraportti6.md)
+
 
 ## Dokumentit
 

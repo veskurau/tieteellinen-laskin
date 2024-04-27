@@ -1,0 +1,7 @@
+# Viikkoraportti 6
+
+Tällä viikolla suurin osa ajasta meni uusien testien luomiseen. Loin monipuolisesti testejä testiluokkaan TestCalculator, joka periaatteessa testaa Calculator-luokkaa, mutta samalla käy läpi kaikki tärkeimmät luokat. Tällä hetkellä Validator-, ShuntingYard- ja ResultCalculator -luokkien haarautumakattavuus on saatu hyvälle 90-100% tasolle. Lisäksi muokkasin koodia niin, että se havaitsee erilaisia virheellisiä syötteitä. Kuten esimerkiksi nollalla jakamisen, sen kuinka monta argumenttia millekin funktiolle täytyy syöttää sekä erilaisia tarkastuksia operaatioiden oikeaoppiselle syöttämiselle. Muuten aikaa kului myös dokumenttien päivitykseen. Loin käyttöohjeet sekä päivitin testaus- ja toteutusdokumentteja. Lisäksi annoin toisen vertaisarvioinnin toisen opiskelijan työstä. 
+
+Seuraavia kehityskohteita on yrittää vielä saada lisättyä toiminnallisuus sille, että käyttäjä voi tallentaa saamiaan vastauksiaan muuttujiin. Lisäksi ohjelmaa on tarkoitus vielä siistiä ennen lopullista palautusta ja demoa, kuten poistaa ylimääräiset kommentit, tulostukset ym. Samoin myös käyttöliittymään pitää tehdä loppulliset viimeistelyt. 
+
+Työtunteja kului tällä viikolla noin 10 tuntia. 
