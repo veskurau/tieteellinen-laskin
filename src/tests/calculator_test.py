@@ -90,3 +90,97 @@ class TestCalculator(unittest.TestCase):
         result = self.result_calculator.calculate(postfix_expression, self.single_arg_functions, self.double_arg_functions)
 
         self.assertEqual(result, wanted_result)
+
+    def test_expression_with_negative_integer_gives_correct_answer(self):
+        expression = "2*(0-1)"
+        wanted_result = "-2"
+
+        self.validator.validate(expression, self.saved_variables, self.all_valid_functions)
+        validated_expression = self.validator.get_expression_deque()
+        postfix_expression = self.shunting_yard.start(validated_expression)
+        result = self.result_calculator.calculate(postfix_expression, self.single_arg_functions, self.double_arg_functions)
+
+        self.assertEqual(result, wanted_result)
+
+    def test_expression_with_divided_by_zero_gives_error(self):
+        expression = "3+2*(2/0+1)"
+        wanted_result = False
+
+        self.validator.validate(expression, self.saved_variables, self.all_valid_functions)
+        validated_expression = self.validator.get_expression_deque()
+        postfix_expression = self.shunting_yard.start(validated_expression)
+        result = self.result_calculator.calculate(postfix_expression, self.single_arg_functions, self.double_arg_functions)
+
+        self.assertEqual(result, wanted_result)
+
+    def test_expression_with_two_consecutive_operations_gives_error(self):
+        expression = "3+-2"
+        wanted_result = False
+        self.validator.validate(expression, self.saved_variables, self.all_valid_functions)
+        validated_expression = self.validator.get_expression_deque()
+        postfix_expression = self.shunting_yard.start(validated_expression)
+        result = self.result_calculator.calculate(postfix_expression, self.single_arg_functions, self.double_arg_functions)
+        self.assertEqual(result, wanted_result)
+
+        expression = "3^^2"
+        wanted_result = False
+        self.validator.validate(expression, self.saved_variables, self.all_valid_functions)
+        validated_expression = self.validator.get_expression_deque()
+        postfix_expression = self.shunting_yard.start(validated_expression)
+        result = self.result_calculator.calculate(postfix_expression, self.single_arg_functions, self.double_arg_functions)
+
+        self.assertEqual(result, wanted_result)
+
+    def test_expression_with_operation_in_the_end_gives_error(self):
+        expression = "1+2-5^"
+        wanted_result = False
+
+        self.validator.validate(expression, self.saved_variables, self.all_valid_functions)
+        validated_expression = self.validator.get_expression_deque()
+        postfix_expression = self.shunting_yard.start(validated_expression)
+        result = self.result_calculator.calculate(postfix_expression, self.single_arg_functions, self.double_arg_functions)
+
+        self.assertEqual(result, wanted_result)
+
+    def test_expression_with_incorrect_characters_gives_error(self):
+        expression = "2+1?10-5"
+        wanted_result = False
+        result = self.validator.validate(expression, self.saved_variables, self.all_valid_functions)
+        self.assertEqual(result, wanted_result)
+
+        expression = "2+1'5"
+        wanted_result = False
+        result = self.validator.validate(expression, self.saved_variables, self.all_valid_functions)
+        self.assertEqual(result, wanted_result)
+
+        expression = "!!!"
+        wanted_result = False
+        result = self.validator.validate(expression, self.saved_variables, self.all_valid_functions)
+        self.assertEqual(result, wanted_result)
+
+    def test_expression_with_incorrect_function_gives_error(self):
+        expression = "random"
+        wanted_result = False
+        result = self.validator.validate(expression, self.saved_variables, self.all_valid_functions)
+        self.assertEqual(result, wanted_result)
+
+        expression = "maxx"
+        wanted_result = False
+        result = self.validator.validate(expression, self.saved_variables, self.all_valid_functions)
+        self.assertEqual(result, wanted_result)
+
+        expression = "minmaxsin"
+        wanted_result = False
+        result = self.validator.validate(expression, self.saved_variables, self.all_valid_functions)
+        self.assertEqual(result, wanted_result)
+
+    # def test_expression_with_comma_in_wrong_place_gives_error(self):
+    #     expression = "max(1,2,3)"
+    #     wanted_result = False
+
+    #     self.validator.validate(expression, self.saved_variables, self.all_valid_functions)
+    #     validated_expression = self.validator.get_expression_deque()
+    #     postfix_expression = self.shunting_yard.start(validated_expression)
+    #     result = self.result_calculator.calculate(postfix_expression, self.single_arg_functions, self.double_arg_functions)
+
+    #     self.assertEqual(result, wanted_result)

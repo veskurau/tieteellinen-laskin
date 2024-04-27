@@ -23,6 +23,7 @@ class ShuntingYard:
         self.operator_stack = []
         self.operator_precedence = {"^": 4, "*": 3, "/": 3, "+": 2, "-": 2}
 
+
     def start(self, input_queue):
         """Starts the shunting yard algorithm and checks the input expression in infix notation
             and adds the tokens to the output expression which is in postfix notation.
@@ -46,6 +47,7 @@ class ShuntingYard:
             if token[0] in string.digits:
                 self.output_queue.append(token)
 
+
             # Check the first character, if it is letter a-z,
             # then it must be a function, add to operator stack
             elif token[0] in string.ascii_lowercase:
@@ -65,7 +67,7 @@ class ShuntingYard:
                             break
                     else:
                         break
-                        
+      
                 self.operator_stack.append(token[0])
 
             elif token[0] == ",":

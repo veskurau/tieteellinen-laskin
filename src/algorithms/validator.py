@@ -139,9 +139,6 @@ class Validator:
         else:
             return False
 
-        # TODO: More checks will probably be needed,
-        # e.g.: after valid func must come left parenthesis, and after that digits and comma etc.
-        # BUT shunring yard might check these above!
 
     def _variable_valid_and_processed(self):
         if self.expression_string[self.i] in self.saved_variables:

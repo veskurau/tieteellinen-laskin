@@ -38,7 +38,7 @@ class ResultCalculator:
 
         for token in self.postfix_queue:
 
-            if token[0] in string.digits:
+            if token[0] in string.digits: 
                 self.token_stack.append(token)
             elif token in self.single_arg_functions:
                 first_number = self.token_stack.pop()
@@ -49,11 +49,20 @@ class ResultCalculator:
                 self.token_stack.append(str(eval(f"{token}({second_number, first_number})")))
             elif token == "^":
                 first_number = self.token_stack.pop()
+                if len(self.token_stack) == 0:
+                    print(f"Error: Operations used incorrectly")
+                    return False
                 second_number = self.token_stack.pop()
                 self.token_stack.append(str(eval(f"{second_number}**{first_number}")))
             else: # All other operations besides power
                 first_number = self.token_stack.pop()
+                if len(self.token_stack) == 0:
+                    print(f"Error: Operations used incorrectly")
+                    return False
                 second_number = self.token_stack.pop()
+                if token == "/" and first_number == "0":
+                    print("Error: You can not divide by zero")
+                    return False
                 self.token_stack.append(str(eval(f"{second_number}{token}{first_number}")))
 
         return self.token_stack[0]
