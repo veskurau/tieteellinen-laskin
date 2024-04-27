@@ -174,8 +174,31 @@ class TestCalculator(unittest.TestCase):
         result = self.validator.validate(expression, self.saved_variables, self.all_valid_functions)
         self.assertEqual(result, wanted_result)
 
+    def test_expression_with_single_arg_function_with_multiple_arg_gives_error(self):
+        expression = "sqrt(2,3)"
+        wanted_result = False
+
+        self.validator.validate(expression, self.saved_variables, self.all_valid_functions)
+        validated_expression = self.validator.get_expression_deque()
+        postfix_expression = self.shunting_yard.start(validated_expression)
+        result = self.result_calculator.calculate(postfix_expression, self.single_arg_functions, self.double_arg_functions)
+
+        self.assertEqual(result, wanted_result)
+
+    def test_expression_with_double_arg_function_with_multiple_arg_gives_error(self):
+        expression = "max(2,3,4)"
+        wanted_result = False
+
+        self.validator.validate(expression, self.saved_variables, self.all_valid_functions)
+        validated_expression = self.validator.get_expression_deque()
+        postfix_expression = self.shunting_yard.start(validated_expression)
+        result = self.result_calculator.calculate(postfix_expression, self.single_arg_functions, self.double_arg_functions)
+
+        self.assertEqual(result, wanted_result)
+
+
     # def test_expression_with_comma_in_wrong_place_gives_error(self):
-    #     expression = "max(1,2,3)"
+    #     expression = "sqrt(,1)"
     #     wanted_result = False
 
     #     self.validator.validate(expression, self.saved_variables, self.all_valid_functions)

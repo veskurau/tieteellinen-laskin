@@ -42,10 +42,18 @@ class ResultCalculator:
                 self.token_stack.append(token)
             elif token in self.single_arg_functions:
                 first_number = self.token_stack.pop()
+                if len(self.token_stack) > 0:
+                    if self.token_stack[len(self.token_stack)-1] in string.digits:
+                        print(f"Error: Too many arguments given to function {token}")
+                        return False
                 self.token_stack.append(str(eval(f"math.{token}({first_number})")))
             elif token in self.double_arg_functions:
                 first_number = self.token_stack.pop()
                 second_number = self.token_stack.pop()
+                if len(self.token_stack) > 0:
+                    if self.token_stack[len(self.token_stack)-1] in string.digits:
+                        print(f"Error: Too many arguments given to function {token}")
+                        return False
                 self.token_stack.append(str(eval(f"{token}({second_number, first_number})")))
             elif token == "^":
                 first_number = self.token_stack.pop()
