@@ -15,6 +15,8 @@
 
 ## Dokumentit
 
+[Käyttöohje](https://github.com/veskurau/tieteellinen-laskin/blob/main/dokumentaatio/kayttohje.md)
+
 [Määrittelydokumentti](https://github.com/veskurau/tieteellinen-laskin/blob/main/dokumentaatio/maarittelydokumentti.md)
 
 [Testausdokumentti](https://github.com/veskurau/tieteellinen-laskin/blob/main/dokumentaatio/testausdokumentti.md)
