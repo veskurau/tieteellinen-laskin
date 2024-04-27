@@ -196,14 +196,64 @@ class TestCalculator(unittest.TestCase):
 
         self.assertEqual(result, wanted_result)
 
+    def test_expression_with_double_arg_function_with_less_args_gives_error(self):
+        expression = "max(2)"
+        wanted_result = False
+        self.validator.validate(expression, self.saved_variables, self.all_valid_functions)
+        validated_expression = self.validator.get_expression_deque()
+        postfix_expression = self.shunting_yard.start(validated_expression)
+        result = self.result_calculator.calculate(postfix_expression, self.single_arg_functions, self.double_arg_functions)
+        self.assertEqual(result, wanted_result)
 
-    # def test_expression_with_comma_in_wrong_place_gives_error(self):
-    #     expression = "sqrt(,1)"
-    #     wanted_result = False
+        expression = "max()"
+        wanted_result = False
+        self.validator.validate(expression, self.saved_variables, self.all_valid_functions)
+        validated_expression = self.validator.get_expression_deque()
+        postfix_expression = self.shunting_yard.start(validated_expression)
+        result = self.result_calculator.calculate(postfix_expression, self.single_arg_functions, self.double_arg_functions)
+        self.assertEqual(result, wanted_result)
 
-    #     self.validator.validate(expression, self.saved_variables, self.all_valid_functions)
-    #     validated_expression = self.validator.get_expression_deque()
-    #     postfix_expression = self.shunting_yard.start(validated_expression)
-    #     result = self.result_calculator.calculate(postfix_expression, self.single_arg_functions, self.double_arg_functions)
+    def test_expression_with_single_arg_function_with_less_args_gives_error(self):
+        expression = "sqrt(,)"
+        wanted_result = False
+        self.validator.validate(expression, self.saved_variables, self.all_valid_functions)
+        validated_expression = self.validator.get_expression_deque()
+        postfix_expression = self.shunting_yard.start(validated_expression)
+        result = self.result_calculator.calculate(postfix_expression, self.single_arg_functions, self.double_arg_functions)
+        self.assertEqual(result, wanted_result)
 
-    #     self.assertEqual(result, wanted_result)
+        expression = "sqrt()"
+        wanted_result = False
+        self.validator.validate(expression, self.saved_variables, self.all_valid_functions)
+        validated_expression = self.validator.get_expression_deque()
+        postfix_expression = self.shunting_yard.start(validated_expression)
+        result = self.result_calculator.calculate(postfix_expression, self.single_arg_functions, self.double_arg_functions)
+        self.assertEqual(result, wanted_result)
+
+    def test_expression_with_double_arg_function_with_operations_within_arguments(self):
+        expression = "max(2+2,5-2)"
+        wanted_result = "4"
+        self.validator.validate(expression, self.saved_variables, self.all_valid_functions)
+        validated_expression = self.validator.get_expression_deque()
+        postfix_expression = self.shunting_yard.start(validated_expression)
+        result = self.result_calculator.calculate(postfix_expression, self.single_arg_functions, self.double_arg_functions)
+        self.assertEqual(result, wanted_result)
+
+
+    def test_expression_last_character_is_a_dot_gives_error(self):
+        expression = "10+500."
+        wanted_result = False
+        self.validator.validate(expression, self.saved_variables, self.all_valid_functions)
+        validated_expression = self.validator.get_expression_deque()
+        postfix_expression = self.shunting_yard.start(validated_expression)
+        result = self.result_calculator.calculate(postfix_expression, self.single_arg_functions, self.double_arg_functions)
+        self.assertEqual(result, wanted_result)
+
+    def test_expression_with_multiple_functions_with_operations_in_arguments(self):
+        expression = "max(2+2,5-2)-min(2+1,1+1)+sqrt(10-1)"
+        wanted_result = "5.0"
+        self.validator.validate(expression, self.saved_variables, self.all_valid_functions)
+        validated_expression = self.validator.get_expression_deque()
+        postfix_expression = self.shunting_yard.start(validated_expression)
+        result = self.result_calculator.calculate(postfix_expression, self.single_arg_functions, self.double_arg_functions)
+        self.assertEqual(result, wanted_result)
