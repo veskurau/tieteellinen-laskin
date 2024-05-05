@@ -113,11 +113,11 @@ class ShuntingYard:
             self.output_queue.append(self.operator_stack.pop())
             
         # TODO poista tulostukset kun et enää tarvitse
-        print()
-        print("Shunting yardin jälkeen:")
-        print(f"Input infix muodossa: {self.input_queue}")
-        print(f"Output postfix muodossa: {self.output_queue}")
-        print()
+        # print()
+        # print("Shunting yardin jälkeen:")
+        # print(f"Input infix muodossa: {self.input_queue}")
+        # print(f"Output postfix muodossa: {self.output_queue}")
+        # print()
         return self.output_queue
 
 

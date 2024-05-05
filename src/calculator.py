@@ -58,8 +58,8 @@ class Calculator:
             # TODO: Add functionality that will give an error to the user, that the expression was not valid
 
         # Test printing:
-        print("Validated expression:")
-        print(self.validated_expression)
+        # print("Validated expression:")
+        # print(self.validated_expression)
 
         self.rpn = self.shunting_yard.start(self.validated_expression)
         if not self.rpn:
@@ -69,7 +69,7 @@ class Calculator:
 
         self.result = self.result_calculator.calculate(self.rpn, self.single_arg_functions, self.double_arg_functions)
 
-        print(f"Tulos on: {self.result}")
+        #print(f"Tulos on: {self.result}")
         return self.result
 
 
