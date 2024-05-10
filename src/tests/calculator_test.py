@@ -257,3 +257,56 @@ class TestCalculator(unittest.TestCase):
         postfix_expression = self.shunting_yard.start(validated_expression)
         result = self.result_calculator.calculate(postfix_expression, self.single_arg_functions, self.double_arg_functions)
         self.assertEqual(result, wanted_result)
+
+    def test_calculator_start_method_with_correct_input(self):
+        expression = "5"
+        wanted_result = "5"
+        result = self.calculator.start(expression)
+        self.assertEqual(result, wanted_result)
+
+    def test_calculator_start_method_with_incorrect_input_with_validator_class(self):
+        expression = "???"
+        wanted_result = False
+        result = self.calculator.start(expression)
+        self.assertEqual(result, wanted_result)
+
+    def test_calculator_start_method_with_incorrect_input_with_shunting_yard_class(self):
+        expression = "(1+2))"
+        wanted_result = False
+        result = self.calculator.start(expression)
+        self.assertEqual(result, wanted_result)
+
+    def test_variable_used_expression_is_calculated_correctly(self):
+        self.calculator.save_result_to_variable("5") # This is saved to variable A
+        expression = "2+3+A"
+        wanted_result = "10"
+        result = self.calculator.start(expression)
+        self.assertEqual(result, wanted_result)
+
+        wanted_dictionary = {}
+        wanted_dictionary["A"] = "5"
+        self.assertEqual(self.calculator.get_saved_variables(), wanted_dictionary)
+
+    def test_if_all_variables_are_used_the_start_from_beginning_again(self):
+        while True:
+            self.calculator.save_result_to_variable("1")
+            if self.calculator.get_last_saved_variable() == "Z":
+                break
+
+        self.calculator.save_result_to_variable("5") # This is saved to variable A
+        expression = "2+3+A"
+        wanted_result = "10"
+        result = self.calculator.start(expression)
+        self.assertEqual(result, wanted_result)
+
+    def test_expression_with_large_numbers_gives_value_error(self):
+        expression = "99999^99999"
+        wanted_result = False
+        result = self.calculator.start(expression)
+        self.assertEqual(result, wanted_result)
+
+    def test_expression_with_other_false_input_gives_error(self):
+        expression = "*"
+        wanted_result = False
+        result = self.calculator.start(expression)
+        self.assertEqual(result, wanted_result)

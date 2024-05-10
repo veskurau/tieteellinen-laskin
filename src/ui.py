@@ -59,15 +59,16 @@ class UI:
     def _enter_expression(self):
         expression = input("Enter expression: ")
         result = self._calculator.start(expression)
-        print()
-        print(f"The result is: {result}")
-        print()
-        save_result = input("Do you want to save the result (y)? ")
-        if save_result == "y":
-            self._calculator.save_result_to_variable(result)
-            variable = self._calculator.get_last_saved_variable()
+        if result:
             print()
-            print(f"The result {result} has been saved to variable {variable}")
+            print(f"The result is: {result}")
+            print()
+            save_result = input("Do you want to save the result (y)? ")
+            if save_result == "y":
+                self._calculator.save_result_to_variable(result)
+                variable = self._calculator.get_last_saved_variable()
+                print()
+                print(f"The result {result} has been saved to variable {variable}")
 
     def _get_saved_variables(self):
         return self._calculator.get_saved_variables()
