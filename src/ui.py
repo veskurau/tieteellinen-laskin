@@ -1,6 +1,5 @@
 from calculator import Calculator
 
-
 class UI:
     """Class, the interface which interacts with the user.
 

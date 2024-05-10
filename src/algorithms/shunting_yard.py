@@ -22,7 +22,6 @@ class ShuntingYard:
         self.operator_stack = []
         self.operator_precedence = {"^": 4, "*": 3, "/": 3, "+": 2, "-": 2}
 
-
     def start(self, input_queue):
         """Starts the shunting yard algorithm and checks the input expression in infix notation
             and adds the tokens to the output expression which is in postfix notation.
