@@ -16,6 +16,7 @@ class Calculator:
         rpn: Deque, holds the expression in postfix notation or Reverse Polish notation
         saved_variables: Dictionary, keeps track of the saved results. 
                          Key is the variable name and value is the result.
+        index_of_last_saved_variable: Integer, tracks to which variable A-Z the result will be saved
         single_arg_functions: List, holds all valid single argument functions
         double_arg_functions: List, holds all valid double argument functions
         all_valid_functions: List, holds all valid functions
@@ -32,6 +33,7 @@ class Calculator:
         self.rpn = deque()
         self.result = ""
         self.saved_variables = {}
+        self.index_of_variable = 0
         self.stack = []
         self.single_arg_functions = ["sqrt", "sin", "cos", "tan"]
         self.double_arg_functions = ["min", "max"]
@@ -73,12 +75,35 @@ class Calculator:
         return self.result
 
 
+    def save_result_to_variable(self, result):
+        """Saves the last result to the next available variable
+
+        Args:
+            result (str): Answer to the last expression which will be saved. 
+        """
+        variable = string.ascii_uppercase[self.index_of_variable]
+        self.saved_variables[variable] = result
+        self.index_of_variable += 1
+        if self.index_of_variable >= 26: # If all letters have been used, start again from A
+            self.index_of_variable = 0
+
+
+
     def get_saved_variables(self):
-        """Gets all the saved variables from the
+        """Gets all the saved variables from the dictionary
 
         Returns:
             Dictionary: Includes all the saved variables
         """
 
         return self.saved_variables
+
+    def get_last_saved_variable(self):
+        """Gets the last saved variable
+
+        Returns:
+            String: Last saved variable
+        """
+
+        return string.ascii_uppercase[self.index_of_variable-1]
 

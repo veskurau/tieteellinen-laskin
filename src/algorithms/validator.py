@@ -29,6 +29,7 @@ class Validator:
         Args:
             expression (str): Expression in infix notation.
             saved_variables (dict): Saved results of previous expressions
+            valid_functions (list): All valid functions in the expression
 
         Returns:
             Deque: Expression in infix notation with the tokens parsed or
@@ -57,7 +58,7 @@ class Validator:
                 if not self._function_valid_and_processed():
                     return False
 
-            # Situation where a uppercase A-Z is given, might be a saved variable, check the dict
+            # Situation where an uppercase A-Z is given, might be a saved variable, check the dict
             elif self.expression_string[self.i] in string.ascii_uppercase:
                 if not self._variable_valid_and_processed():
                     return False
@@ -141,6 +142,13 @@ class Validator:
 
 
     def _variable_valid_and_processed(self):
+        """Checks if a variable is found in saved variables dictionary and if it is, 
+        then adds the result of the variable as a token to the deque
+
+        Returns:
+            True: Variable is valid and has been added to deque
+            False: If variable is not valid
+        """
         if self.expression_string[self.i] in self.saved_variables:
             variable_result = self.saved_variables[self.expression_string[self.i]]
             self.expression_deque.append(variable_result)
