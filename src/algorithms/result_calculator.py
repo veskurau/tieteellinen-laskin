@@ -19,7 +19,6 @@ class ResultCalculator:
         self.single_arg_functions = []
         self.double_arg_functions = []
 
-
     def calculate(self, expression, single_arg_functions, double_arg_functions):
         """Uses a stack to calculate the result of a postfix expression.
 

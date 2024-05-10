@@ -21,7 +21,6 @@ class Calculator:
         double_arg_functions: List, holds all valid double argument functions
         all_valid_functions: List, holds all valid functions
 
-
     """
 
     def __init__(self):
@@ -64,7 +63,6 @@ class Calculator:
 
         return self.result
 
-
     def save_result_to_variable(self, result):
         """Saves the last result to the next available variable
 
@@ -76,8 +74,6 @@ class Calculator:
         self.index_of_variable += 1
         if self.index_of_variable >= 26: # If all letters have been used, start again from A
             self.index_of_variable = 0
-
-
 
     def get_saved_variables(self):
         """Gets all the saved variables from the dictionary
