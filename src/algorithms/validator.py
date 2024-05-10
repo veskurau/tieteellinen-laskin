@@ -1,9 +1,6 @@
 import string
 from collections import deque
 
-# pylint: disable=all
-
-
 class Validator:
     """Class, responsible for doing the initial check to a string-type infix expression,
         so that there are no invalid characters in the expression. The validator will parse
@@ -35,6 +32,7 @@ class Validator:
             Deque: Expression in infix notation with the tokens parsed or
             False: If expression not valid
         """
+
         self.valid_functions = valid_functions
         self.expression_deque = deque()
         self.saved_variables = saved_variables
@@ -94,7 +92,7 @@ class Validator:
             if self.expression_string[self.i+1] in string.digits:
                 numbers = numbers + self.expression_string[self.i+1]
                 self.i += 1
-            # If it is a dot. Also checks that it is not the last character, it is followed by a digit,
+            # If not a dot, checks that it is not the last character, it is followed by a digit,
             # and there is only one . in the token
             elif self.expression_string[self.i+1] == ".":
                 if "." in numbers:
@@ -140,7 +138,6 @@ class Validator:
         else:
             return False
 
-
     def _variable_valid_and_processed(self):
         """Checks if a variable is found in saved variables dictionary and if it is, 
         then adds the result of the variable as a token to the deque
@@ -149,6 +146,7 @@ class Validator:
             True: Variable is valid and has been added to deque
             False: If variable is not valid
         """
+
         if self.expression_string[self.i] in self.saved_variables:
             variable_result = self.saved_variables[self.expression_string[self.i]]
             self.expression_deque.append(variable_result)

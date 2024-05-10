@@ -15,7 +15,7 @@ class UI:
 
     def start(self):
         """Starts up the interface for the user."""
-        
+
         print()
         print("Welcome to the Scientific Calculator!")
 

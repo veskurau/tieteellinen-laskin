@@ -2,9 +2,6 @@ import unittest
 from collections import deque
 from algorithms.validator import Validator
 
-# FROM COMMAND LINE: coverage run --branch -m pytest src; coverage html
-
-
 class TestValidator(unittest.TestCase):
     """Tests for Validator class, which is responsible for the initial validation
         of the expression in infix notation.

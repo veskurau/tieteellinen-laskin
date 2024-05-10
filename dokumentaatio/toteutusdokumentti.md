@@ -9,9 +9,11 @@ Ohjelma käyttää kolmea eri algoritmia, jotka tarkistavat ja muokkaavat käytt
 Ohjelma pystyy tarkistamaan erilaisia virheitä lausekkeista. Alla joitakin esimerkkejä:
 - Sulkeiden väärä määrä tai järjestys
 - Sellaiset merkit jotka eivät ole sallittuja
+- Operaatioiden virheellinen käyttö
 - Virheelliset funktiot
 - Jos funktioille annetaan väärä määrä argumentteja
 - Nollalla jakaminen
+- Liian suuret luvut
 
 ## Aika- ja tilavaativuudet
 
@@ -19,7 +21,7 @@ Shunting yard algoritmi lukee jokaisen merkin yhden kerran, pinoon menevät merk
 
 ## Työn mahdolliset puutteet ja parannusehdotukset
 
-Käyttäjä ei pysty vielä tallentamaan vastauksia muuttujiin. Negatiivinen luku täytyy antaa nollan avulla (esimerkiksi -5 täytyy syöttää muodossa 0-5).
+Negatiivinen luku, joka on lausekkeessa "yksinään" täytyy antaa nollan avulla (esimerkiksi -5 täytyy syöttää muodossa 0-5).
 
 ## Laajojen kielimallien käyttö
 

@@ -1,7 +1,6 @@
 import string
 from collections import deque
 
-
 class ShuntingYard:
     """Class, uses the shunting yard algorithm to transform an infix expression to a 
         postfix expression which is also known as the Reverse Polish Notation (RPN).
@@ -32,21 +31,21 @@ class ShuntingYard:
             input_queue (deque): Expression in infix notation
 
         Returns:
+            Deque: Expression in postfix notation or
+            False: If expression not valid
 
         """
+
         self.output_queue = deque()
         self.operator_stack = []
-
         self.input_queue = input_queue
 
-        # while len(self.input_queue) > 0:
         # Let's go over all the tokens in the input
         for token in self.input_queue:
 
             # Check the first character, if it is a number, then add to output
             if token[0] in string.digits:
                 self.output_queue.append(token)
-
 
             # Check the first character, if it is letter a-z,
             # then it must be a function, add to operator stack
@@ -60,14 +59,14 @@ class ShuntingYard:
                     if not top_operator:
                         break
                     if top_operator != "(":
-                        if (self.operator_precedence[top_operator] > self.operator_precedence[token[0]] 
+                        if (self.operator_precedence[top_operator] > self.operator_precedence[token[0]]
                         or (self.operator_precedence[top_operator] == self.operator_precedence[token[0]] and token[0] != "^")):
                             self.output_queue.append(self.operator_stack.pop())
                         else:
                             break
                     else:
                         break
-      
+
                 self.operator_stack.append(token[0])
 
             elif token[0] == ",":
@@ -79,11 +78,12 @@ class ShuntingYard:
 
             elif token[0] == "(":
                 self.operator_stack.append(token[0])
-            
+
             elif token[0] == ")":
                 top_operator = self.get_top_operator_from_stack()
                 while top_operator != "(":
-                    # If operator stack is empty, there was no left paranthesis in the stack to pair up with this right one
+                    # If operator stack is empty,
+                    # there was no left paranthesis in the stack to pair up with this right one
                     if not top_operator:
                         print("Error: Mismatched parenthesis")
                         return False
@@ -109,17 +109,10 @@ class ShuntingYard:
             if top_operator in "()":
                 print("Error: Mismatched parenthesis")
                 return False
-            
-            self.output_queue.append(self.operator_stack.pop())
-            
-        # TODO poista tulostukset kun et enää tarvitse
-        # print()
-        # print("Shunting yardin jälkeen:")
-        # print(f"Input infix muodossa: {self.input_queue}")
-        # print(f"Output postfix muodossa: {self.output_queue}")
-        # print()
-        return self.output_queue
 
+            self.output_queue.append(self.operator_stack.pop())
+
+        return self.output_queue
 
     def get_output_queue(self):
         return self.output_queue
@@ -131,5 +124,5 @@ class ShuntingYard:
         tokens_in_stack = len(self.operator_stack)
         if tokens_in_stack == 0:
             return None
-        else:
-            return self.operator_stack[tokens_in_stack-1]
+
+        return self.operator_stack[tokens_in_stack-1]

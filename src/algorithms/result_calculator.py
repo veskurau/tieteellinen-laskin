@@ -8,6 +8,8 @@ class ResultCalculator:
     Attributes:
         postfix_queue: Deque, holds the tokens of an expression in postfix notation
         token_stack: List, used as a stack where the tokens
+        single_arg_functions (list): All valid single argument functions
+        double_arg_functions (list): All valid double argument functions
 
     """
 
@@ -25,7 +27,6 @@ class ResultCalculator:
             expression (deque): Expression in postfix notation.
             single_arg_functions (list): All valid single argument functions
             double_arg_functions (list): All valid double argument functions
-            result (str): The calculated result
 
         Returns:
             String: Result of the expression
@@ -38,7 +39,7 @@ class ResultCalculator:
 
         for token in self.postfix_queue:
             try:
-                if token[0] in string.digits: 
+                if token[0] in string.digits:
                     self.token_stack.append(token)
                 elif token in self.single_arg_functions:
                     if len(self.token_stack) < 1:
@@ -64,14 +65,14 @@ class ResultCalculator:
                 elif token == "^":
                     first_number = self.token_stack.pop()
                     if len(self.token_stack) == 0:
-                        print(f"Error: Operations used incorrectly")
+                        print("Error: Operations used incorrectly")
                         return False
                     second_number = self.token_stack.pop()
                     self.token_stack.append(str(eval(f"{second_number}**{first_number}")))
                 else: # All other operations besides power
                     first_number = self.token_stack.pop()
                     if len(self.token_stack) == 0:
-                        print(f"Error: Operations used incorrectly")
+                        print("Error: Operations used incorrectly")
                         return False
                     second_number = self.token_stack.pop()
                     if token == "/" and first_number == "0":

@@ -5,9 +5,6 @@ from algorithms.validator import Validator
 from algorithms.shunting_yard import ShuntingYard
 from algorithms.result_calculator import ResultCalculator
 
-# FROM COMMAND LINE: coverage run --branch -m pytest src; coverage html
-
-
 class TestCalculator(unittest.TestCase):
     """Tests for Calculator class, which is responsible for the application logic.
 
@@ -22,7 +19,6 @@ class TestCalculator(unittest.TestCase):
         self.single_arg_functions = ["sqrt", "sin", "cos", "tan"]
         self.double_arg_functions = ["min", "max"]
         self.all_valid_functions = self.single_arg_functions + self.double_arg_functions
-
 
     def test_expression_with_single_digit_gives_correct_answer(self):
         expression = "5"

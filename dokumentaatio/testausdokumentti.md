@@ -18,7 +18,9 @@ Esimerkiksi Validator-luokkaa, joka ottaa syötteeksi String-tyyppisen infix muo
 - Osaa tunnistaa tallennetut muuttujat ja hylätä sellaiset joita ei ole tallennettu
 - jne.
 
-Shunting yard -luokkaa, joka ottaa syötteeksi deque-tyyppisen infix muotoisen lausekkeen on testattu myös hieman vastaavilla testeillä kuin Validator-luokkaa.
+ShuntingYard-luokkaa, joka ottaa syötteeksi deque-tyyppisen infix muotoisen lausekkeen on testattu myös hieman vastaavilla testeillä kuin Validator-luokkaa. Tämä luokka muun muassa tarkistaa onko sulkeita oikea määrä ja ovatko ne oikeassa järjestyksessä. 
+
+ResultCalculator-luokkaa on testattu, että vääränlaiset operaatiot, kuten nollalla jako, antaa virhe ilmoituksen. Myöskään liian suuret luvut antavat virheilmoituksen. 
 
 Testauksen painopiste on testata Calculator-luokkaa, joka vastaa ohjelman toimintalogiikasta. Luokka käyttää kaikkia muita luokkia, joten testit kattavat periaatteessa koko ketjun alusta loppuun. Testauksen kattavuus saatiin hyvälle tasolle, kun logiikasta ja algoritmeista vastaavien luokkien testauskattavuus on 98-100% luokkaa. 
 
