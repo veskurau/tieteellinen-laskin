@@ -20,7 +20,7 @@ Esimerkiksi Validator-luokkaa, joka ottaa syötteeksi String-tyyppisen infix muo
 
 Shunting yard -luokkaa, joka ottaa syötteeksi deque-tyyppisen infix muotoisen lausekkeen on testattu myös hieman vastaavilla testeillä kuin Validator-luokkaa.
 
-Testauksen painopiste on testata Calculator-luokkaa, joka vastaa ohjelman toimintalogiikasta. Luokka käyttää kaikkia muita luokkia, joten testit kattavat periaatteessa koko ketjun alusta loppuun. Tällä hetkellä testit ovat hyvällä mallilla ja eri algoritmiluokkien testauskattavuus on 90-100% luokkaa. 
+Testauksen painopiste on testata Calculator-luokkaa, joka vastaa ohjelman toimintalogiikasta. Luokka käyttää kaikkia muita luokkia, joten testit kattavat periaatteessa koko ketjun alusta loppuun. Testauksen kattavuus saatiin hyvälle tasolle, kun logiikasta ja algoritmeista vastaavien luokkien testauskattavuus on 98-100% luokkaa. 
 
 ## Testauskattavuus
 

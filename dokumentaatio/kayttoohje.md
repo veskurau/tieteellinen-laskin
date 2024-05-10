@@ -28,3 +28,4 @@ Ohjelma ottaa vastaan lausekkeita, jotka voivat sisältää:
 - Mikäli negatiivisia lukuja halutaan esim. kertoa tai jakaa, käytetään jälleen hyödyksi nollaa. Esim. 2*(0-2)
 - Yhden argumentin funktiot: sqrt, sin, cos, tan (esim. sqrt(9))
 - Kahden argumentin funktiot: max, min (esim. max(2,3))
+- Käyttäjä voi tallentaa saatuja tuloksia muuttujiin A-Z ja käyttää näitä lausekkeissa (esim. 2+A, kun A:han on tallennettu tulos)

@@ -54,6 +54,7 @@ class UI:
         print("- Operations +, -, *, /, ^")
         print("- One argument functions sqrt, sin, cos, tan (e.g. sqrt(9))")
         print("- Two argument functions max, min (e.g. max(1,2))")
+        print("- Variables A to Z, when result is saved to the variable")
         print()
 
     def _enter_expression(self):
